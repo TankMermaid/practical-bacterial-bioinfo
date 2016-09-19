@@ -7,6 +7,9 @@
          [new-scale (/ width (pict-width bm))])
     (scale bm new-scale)))
 
+(define-syntax-rule (thought elt ...)
+  (italic (colorize (para #:align 'center elt ...) "gray")))
+
 (title-slide "Who's there? Practical bacterial phylogenetics"
              "Scott Olesen (Williams '10, MIT '16 PhD)")
 
@@ -16,8 +19,6 @@
              (item "2012-2016: MIT, biological engineering PhD, mostly microbiome science")
              (item "2016-20XX: Harvard School of Public Health, postdoc on antibiotic resistance")
              (item "Later: maybe analytical public policy, maybe more biology"))
-
-(transition-slide "Why microbes?")
 
 (slide/title "Microbes are essential to our health, environment, and economy"
              (let ([column-width 300])
@@ -39,13 +40,13 @@
 
 (slide/title "Microbial community profiling helps determine the role of microbes"
              (italic (para "You can think of microbes as..."))
-             (item "correlate of disease (i.e., diagnostic, prognostic indicators)")
-             (item "cause of disease (i.e., potential for therapies or discovering mechanisms)")
+             (item "correlates of disease (i.e., diagnostic, prognostic indicators)")
+             (item "the cause of disease (i.e., potential for therapies or discovering mechanisms)")
              (item "environmental players (e.g., climate change, pollution remediation)"))
 
 (slide/title "E.g., microbial community profiling non-invasively diagnoses inflammatory bowel disease in children"
-             (para "You can't diagnose IBD in children the regular way (with an endoscopy)."
-                   "Microbes provide just as much information as the endoscopy.")
+             (italic (para #:align 'center "You can't diagnose IBD in children the regular way (with an endoscopy)."
+                           "Microbes provide just as much information as the endoscopy."))
              (blank 20)
              (bitmap/relative-width "img/papa.png" 0.7))
 
@@ -58,38 +59,38 @@
              (comment "the great plate count anomaly")
              (bitmap/relative-width "img/sample-plate.png" 0.8))
 
-(transition-slide "Bacterial DNA sequencing")
-
 (slide/title "Next-generation DNA sequencing dramatically changed microbial community profiling"
              (comment "first-generation DNA sequencing couldn't go metagenomics")
-             (item "No culturing required means it's faster to identify organisms")
-             (item "No culturing means profiling is less biased")
+             (item "No waiting for microbes to grow, so it's faster to identify organisms")
+             (item "No need to pick media, so profiling isn't biased in that way")
              (item "Sequencing information is more relevant to phylogeny"))
 
-(slide/title "Bacterial DNA sequencing"
-                  'alts
-                  (list (list (enum 1 "Extract DNA from microbes")
-                              (enum 2 "Prepare DNA for amplification")
-                              (enum 3 "Amplify DNA (polymerase chain reaction [PCR])")
-                              (enum 4 "Sequence DNA (e.g., on Illumina HiSeq)"))
-                        (list (bitmap/relative-width "img/sequencing.png" 0.8))))
+(slide/title "Bacterial DNA sequencing is a multi-step art"
+             (bitmap/relative-width "img/sequencing.png" 0.8))
+
+(transition-slide "How do you turn DNA data into insight?")
 
 (slide/title "Metagenomic shotgun sequencing ``reads'' all the DNA in a microbial community"
-             (item "Cut DNA into random, small pieces (the \"shot\"; 50-300 nucleotides)")
-             (item "Look for small pieces in database of known genomes (or functions)")
-             (item "Or, construct new genomes from small pieces"))
+             (item "Cut DNA into random, short (50-300 nucleotide) pieces (i.e., the \"shot\")")
+             (item "Look for small pieces in database of known genomes (or gene functions)")
+             (item "Or, reconstruct the genomes from the small pieces"))
 
 (slide/title "Metagenomic shotgun sequencing faces some challenges"
              (item "It \"reads\" both human and bacterial DNA")
              (item "Only ~1% of bacterial genes are useful for identifying taxonomy")
              (item "We don't know what >50% of bacterial genes do")
-             (item "Reconstructing genomes from reads is not straightforward"))
+             (item "Reconstructing genomes is not straightforward"))
 
 (slide/title "Amplicon sequencing simplifies bacterial community profiling"
              (item "All bacteria have a common \"taxonomic marker\" gene")
              (item "Non-bacterial DNA does not get amplified")
              (item "All sequencing reads go toward taxonomic information")
              (item "Inferring taxonomy is conceptually and computationally simpler"))
+
+(slide
+ (cc-superimpose
+  (full-page)
+  (bitmap/relative-width "img/shotgun-vs-amplicon.png" 0.8)))
 
 (slide/title "The 16S rRNA gene is the common taxonomic marker gene"
              (italic (para #:align 'center "Variable region content plus molecular clock yields bacterial phylogeny"))
@@ -111,12 +112,20 @@
 (slide/title "16S sequences can be made into their own phylogeny"
              (bitmap/relative-width "img/seq-to-tree.png" 0.6)
              (blank 10)
-             (italic (colorize (para #:align 'center "How do you interpret the leaves?") "gray")))
+             (italic (colorize (para #:align 'center "But how do you interpret the leaves?") "gray")))
 
 (slide/title "16S sequences can be mapped onto existing taxonomies"
-             (item "swo> this makes it easier to relate to existing literature"))
+             (bitmap/relative-width "img/seq-to-tax.png" 0.75)
+             (blank 20)
+             (thought "Easier to make hypotheses and relate to other studies"))
 
-(slide/title "Method 1: Exhaustive alignment-based searches (BLAST) are slow but reliable"
+(slide/title "Taxonomy assignment is different from (but related to) operational taxonomic unit (OTU) assignment"
+             (item "OTU-calling clusters unique sequences into biologically-relevant quasi-species")
+             (subitem "Reference-based OTUs: put each sequence into the database OTU that it matches best")
+             (subitem (it "De novo") "OTUs: put similar sequences into the same" (it "ad hoc") "OTUs")
+             (item (it "De novo") "OTUs are assigned taxonomies using a reference database"))
+
+(slide/title "Taxonomy assignment, Method 1: Exhaustive alignment-based searches (BLAST) are slow but reliable"
              (comment "OTUs are handy for reducing number of comparisons")
              'alts
              (list (list (italic (para #:align 'center "Compare all against all"))
@@ -129,7 +138,7 @@
                          (item "Very slow")
                          (item "Poor characterization of uncultured organisms"))))
 
-(slide/title "Method 2: Alignment-based search with heuristics (USEARCH)"
+(slide/title "Method 2: Alignment-based search with heuristics (USEARCH) are faster but weirder"
              (para (bt "Pro:"))
              (item "10-1,000x faster than BLAST")
              (para (bt "Con:"))
