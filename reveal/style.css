@@ -1,5 +1,9 @@
 /* Basic theme for remark slides */
 
+/* Load up some special fonts */
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
 * {
     .box-sizing(border-box);
 }
@@ -10,15 +14,15 @@
 
 html {
     font-size: 100%;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
 }
 
 body {
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Arial, sans-serif;
     font-size: 24px;
     line-height: 1.5;
-    color: #555555;
+    color: #000000;
     background-color: #FFFFFF;
 }
 
@@ -46,9 +50,17 @@ ol {
     margin: 1em 0;
 }
 
+ol li {
+    padding: 1em 0 0 0;
+}
+
 ul {
     margin: 1em 0;
     padding: 0 0 0 1em;
+}
+
+ul li {
+    padding: 0.5em 0 0 0;
 }
 
 img {
@@ -67,6 +79,7 @@ hr {
 
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: "Lato", Arial, sans-serif;
     font-weight: 500;
     margin: 1em 0 0.5em;
 }
@@ -95,13 +108,15 @@ blockquote {
 .remark-slide-content {
     display: table-cell;
     vertical-align: middle;
-    padding: 0 4em;
+    padding: 2em 4em;
     font-size: 24px;
 }
 
 .remark-slide-content h1 {
-    font-size: 56px;
-    color: #00989e;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0em -2em;
+    /* color: #00989e; */
 }
 
 .remark-slide-content h2 {
@@ -127,6 +142,14 @@ blockquote {
 .remark-slide-content h6 {
     font-size: 24px;
     color: #00989e;
+}
+
+.remark-slide-content.transition {
+    text-align: center;
+    vertical-align: middle;
+    font-style: italic;
+    font-weight: bold;
+    color: #808080;
 }
 
 .remark-slide-content > :first-child {

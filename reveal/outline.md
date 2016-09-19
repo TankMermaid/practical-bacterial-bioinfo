@@ -1,9 +1,9 @@
 # "Who's there?": Practical bacterial phylogenetics
-Scott Olesen (Williams '10; MIT PhD '16)
+Scott Olesen
 
 ---
 
-# A brief note about me, in case you're interested in a scientific training
+# A brief note about me (in case you're interested in a scientific training)
 
 - 2006-2010: Williams, BA (physics)
 - 2010-2012: University of Cambridge, Masters (theoretical physics and computational chemistry)
@@ -19,11 +19,13 @@ Scott Olesen (Williams '10; MIT PhD '16)
 
 # Maybe microbes have something to do with colon cancer?
 
-Recent publications have provided mechanistic evidence for the involvement of
-gut bacteria in the development of [colorectal cancer...] Despite this vast
-body of circumstantial evidence, however, no clinical data have thus far been
-available to directly show distinct bacterial colonization patterns in
-[colorectal cancer] patients. ([Marchesi *et al.*](10.1371/journal.pone.0020447), *PLoS ONE* 2011)
+> Recent publications have provided mechanistic evidence for the involvement of
+> gut bacteria in the development of [colorectal cancer...] Despite this vast
+> body of circumstantial evidence, however, no clinical data have thus far been
+> available to directly show distinct bacterial colonization patterns in
+> [colorectal cancer] patients.
+
+([Marchesi *et al.*](10.1371/journal.pone.0020447), *PLoS ONE* 2011)
 
 ---
 
@@ -39,9 +41,12 @@ available to directly show distinct bacterial colonization patterns in
 
 # E.g., microbial community profiling non-invasively diagnoses inflammatory bowel disease in children
 
-*You can't diagnose IBD in children the regular way (with an endoscopy), but
-you can collect their feces, and microbes in the feces provide as much
-information as the endoscopy.*
+> Pediatric inflammatory bowel disease (IBD) is challenging to diagnose because
+> of the non-specificity of symptoms; an unequivocal diagnosis can only be made
+> using colonoscopy, which clinicians are reluctant to recommend for children.
+> [...]  We investigated the use of 16S rRNA sequencing of fecal samples and
+> new analytical methods to assess differences in the microbiota of children
+> with IBD and other gastrointestinal disorders.
 
 ([Papa *et al.*](http://dx.doi.org/10.1371/journal.pone.0039242), *PLoS ONE* 2012)
 
@@ -55,11 +60,11 @@ information as the endoscopy.*
 
 ---
 
-# Culturing techniques are relatively arduous and biased
+# Culturing techniques are arduous and the culturing method introduces bias
 
 <img src="/img/sample-plate.png" width="80%">
 
-*Behold, the great plate count anomaly.*
+.center[Behold the [great plate count anomaly](http://schaechter.asmblog.org/schaechter/2014/12/the-great-plate-count-anomaly-that-is-no-more.html)!]
 
 ---
 
@@ -77,13 +82,15 @@ information as the endoscopy.*
 
 ---
 
-*How do you turn DNA data into insight?*
+class: transition
+
+# How do you turn DNA data into insight?
 
 ---
 
 # Metagenomic shotgun sequencing "reads" all the DNA in a microbial community
 
-- Cut DNA into random, short (50-300 nucleotide) pieces (i.e., the "shot")
+- [Cut DNA](https://en.wikipedia.org/wiki/DNA_fragmentation) into random, short (50-300 nucleotide) pieces (i.e., the "shot")
 - Look for small pieces in database of known genomes (or gene functions)
 - Or, reconstruct the genomes from the small pieces
 
@@ -91,7 +98,7 @@ information as the endoscopy.*
 
 # Metagenomic shotgun sequencing faces some challenges
 
-- It "reads" both human and bacterial DNA
+- It "reads" both human and bacterial DNA (~99% of reads from a swab can be human)
 - Only ~1% of bacterial genes are useful for identifying taxonomy
 - We don't know what >50% of bacterial genes do
 - Reconstructing genomes is not straightforward
@@ -100,9 +107,9 @@ information as the endoscopy.*
 
 # Amplicon sequencing simplifies bacterial community profiling
 
-- All bacteria have a common "taxonomic marker" gene
+- Amplify only a "taxonomic marker" gene common to all bacteria
 - Non-bacterial DNA does not get amplified
-- All sequencing reads go toward taxonomic information
+- Thus, all sequencing reads go toward taxonomic information
 - Inferring taxonomy is conceptually and computationally simpler
 
 ---
@@ -111,11 +118,19 @@ information as the endoscopy.*
 
 ---
 
-# The 16S rRNA gene is the common taxonomic marker gene
+# The 16S rRNA gene is the popular bacterial taxonomic marker gene
 
-*Variable region content plus molecular clock yields bacterial phylogeny*
+- All organisms have ribosomes
+- Bacteria (and Archaea) have a different ribosome from eukaryotes
+- Bacterial ribosomes have a 16S subunit made up of proteins and ribosomal RNA
 
-<img src="/img/16s-variability.png" width="60%">
+(16S structure: [Wimberly *et al.*](http://dx.doi.org/10.1038/35030006), *Nature* 2000)
+
+---
+
+# The 16S gene has "variable" regions that give phylogenetic information
+
+<img src="/img/16s-variability.png" width="80%">
 
 ---
 
@@ -199,6 +214,8 @@ information as the endoscopy.*
 
 # Greengenes is the popular database to use with USEARCH
 
+The [database](http://greengenes.lbl.gov/cgi-bin/nph-index.cgi)
+
 swo> has non-isolated stuff... but how did it get assigned?
 
 ---
@@ -214,6 +231,9 @@ swo> amy's data
 1.  Do pairwise comparisons in order of decreasing sequence similarity heuristic
 2.  Make time-saving assumptions when performing the alignment
 3.  Stop after finding one hit that reaches acceptable minimum identity
+
+([Edgar](http://dx.doi.org/10.1093/bioinformatics/btq461), *Bioinformatics* 2010;
+USEARCH [documentation](http://www.drive5.com/usearch/manual/usearch_algo.html))
 
 ---
 
@@ -236,11 +256,33 @@ swo> amy's data
 
 ---
 
-# What do the input data actually look like?
+# What do the "raw" sequencing data actually look like?
+
+They are usually in [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) format:
+
+```
+@HWI-M04407:1:1101:15058:1935#TTGATATTAGAGAGAC/1
+TGTGGTGCCAGCCGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGATTTACTGGGTGTAAAG
++
+A1A11B11B11>A1AE0EA0EA/D2DAGFC/D1/B0B/E/EE/FGFE?/BEH12D@@/G/E122@
+@HWI-M04407:1:1101:15485:1946#TTGATATTAGAGAGAC/1
+CACGGTGCCAGCCGCCGCGGTAATACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAG
++
+AAA1AA1>CF1>AAAEEEE0EA/FAF///A//B1FA//A/EE/GGG>/>EEH1FGEDEFGG1B1B
+```
 
 ---
 
 # There are multiple steps between raw data and analysis-ready data
+
+1. Demultiplex reads 
+2. Trim non-biological primers from reads
+3. If using paired-end sequencing, merge reads
+4. Remove reads (or sections of reads) with low quality
+5. Identify and index unique reads
+6. Call OTUs
+
+(This is complex enough that I wrote a [short book](https://leanpub.com/primer16s/) on it!)
 
 ---
 
@@ -248,7 +290,9 @@ swo> amy's data
 
 ---
 
-*Zooming out*
+class: transition
+
+# Zooming out
 
 ---
 
@@ -256,3 +300,16 @@ swo> amy's data
 
 - A DNA stretch near the ribosome is a fungal taxonomic barcode
 - Bacterial species or genera can be examined (e.g., those that cause cholera, tuberculosis, acne, etc.)
+
+---
+
+# New technologies and methods will continue to change this landscape
+
+- Single-cell sequencing: like metagenomic shotgun sequencing, but better
+
+---
+
+# But there is no clear path around certain bottlenecks
+
+- How do you identify the function of unknown genes?
+- What do you do with taxonomies once you have them?
