@@ -3,6 +3,14 @@ Scott Olesen (Williams '10; MIT PhD '16)
 
 ---
 
+# Microbes are essential to our health, environment, and economy
+
+- They cause disease and regulate health
+- They catalyze biogeochemical cycles
+- They process our waste
+
+---
+
 # Motivate microbial community profiling
 - Maybe you think microbes have something to do with cancer
 - http://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0020447
