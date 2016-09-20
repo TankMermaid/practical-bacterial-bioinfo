@@ -13,7 +13,47 @@ Scott Olesen
 
 ---
 
+# My goals for today
+
+- Be interesting/entertaining/give microbiome science a good rap
+- Give a flavor of how bioinformatics/statistics matters to field you probably don't know
+- Show you real tools that are used by scientists (like me) right now
+- Introduce the idea of *heuristics* in computation
+- Be a positive model for you if you're interested in following a path similar to mine
+
+---
+
+# Outline of our hour together
+
+- Motivate microbiome science
+- Show how taxonomy assignment matters
+- Show how taxonomy assignment is done
+- Tell how the devil is in the details
+
+---
+
 # Microbes are essential to our health, environment, and economy
+
+<table style="width:100%">
+<tr>
+  <td style="width:33%"><img src="/img/helicobacter.png" width="100%"></td>
+  <td style="width:33%"><img src="/img/chlorophyll.png" width="100%"></td>
+  <td style="width:33%"><img src="/img/digesters.png" width="100%"></td>
+</tr>
+<tr>
+  <td style="text-align:center">They cause disease and regulate health</td>
+  <td style="text-align:center">They produce oxygen</td>
+  <td style="text-align:center">They process our waste</td>
+</tr>
+</table>
+
+---
+
+# The human body is home to a large and complex community
+
+- Each human has hundreds or thousands of bacterial species living on/in her
+- Bacterial cells are similar in number to human cells
+- Bacterial genes in/on the human body outnumber human genes by 100-1,000 fold
 
 ---
 
@@ -26,6 +66,18 @@ Scott Olesen
 > [colorectal cancer] patients.
 
 ([Marchesi *et al.*](10.1371/journal.pone.0020447), *PLoS ONE* 2011)
+
+---
+
+# 2 minute activity
+
+*How would you design a study to determine if there are "distinct bacterial
+colonization patterns" in colorectal cancer patients?*
+
+- Work with one partner
+- Take 2 minutes to come up with the skeleton of 1 study idea
+- Assume you have unlimited resources
+- Hint: What things are you going to compare? How are you going to measure them?
 
 ---
 
@@ -52,19 +104,41 @@ Scott Olesen
 
 ---
 
-# Before DNA sequencing, analysis of microbial communities relied on culturing
+# E.g., asserting that the microbiome causes obesity
 
-1. Swab an interesting community
-2. Try to grow that on a plate
-3. If bacteria grow, identify them by visual appearance or metabolism
+> The gut microbiome has been proposed to play a causal role in obesity. Here,
+> we review the historical context for this hypothesis, highlight recent key
+> findings, and critically discuss [...]
+> the central epistemological problem for the field: how to
+> define causality in the relationship between microbiota and obesity
+> phenotypes.
+
+([Harley and Karp](http://dx.doi.org/10.1016/j.molmet.2012.07.002), *Molec Metab* 2012)
 
 ---
 
-# Culturing techniques are arduous and the culturing method introduces bias
+# Asking "who's there?" is key to many of these studies
+
+- We know a lot about cultured organisms, which we identify by "name"
+- You need names to talk about how things interact with one another
+
+.center[Unfortunately, many organisms don't have clear "names".]
+
+---
+
+# Before DNA sequencing, analysis of microbial communities relied on culturing
+
+1. Swab an interesting community
+2. Try to grow those bacteria on a plate
+3. If bacteria grow, [identify them](https://en.wikipedia.org/wiki/Bergey%27s_Manual_of_Systematic_Bacteriology) by visual appearance or metabolism
+
+---
+
+# Culturing techniques are arduous, and the particular culturing method introduces bias
 
 <img src="/img/sample-plate.png" width="80%">
 
-.center[Behold the [great plate count anomaly](http://schaechter.asmblog.org/schaechter/2014/12/the-great-plate-count-anomaly-that-is-no-more.html)!]
+.center[Only [about 1%](http://schaechter.asmblog.org/schaechter/2014/12/the-great-plate-count-anomaly-that-is-no-more.html) of species can be cultured!]
 
 ---
 
@@ -72,7 +146,7 @@ Scott Olesen
 
 - No waiting for microbes to grow, so it's faster to identify organisms
 - No need to pick media, so profiling isn't biased in that way
-- Sequencing information is more relevant to phylogeny
+- Sequencing information is more relevant to phylogeny (and thus taxonomy)
 
 ---
 
@@ -85,6 +159,17 @@ Scott Olesen
 class: transition
 
 # How do you turn DNA data into insight?
+
+---
+
+# 2 minute activity
+
+*How would you get "information" from a pile of bacterial DNA?*
+
+- Work with one partner
+- Take 2 minutes to come up with the skeleton of 1 methodology/workflow
+- Assume you have unlimited (but plausible) resources
+- Hint: What kinds of "information" might you want? What will you sequence? What will you do with the sequences?
 
 ---
 
@@ -130,28 +215,28 @@ class: transition
 
 # The 16S gene has "variable" regions that give phylogenetic information
 
-<img src="/img/16s-variability.png" width="80%">
+<img src="/img/16s-variability.png" width="75%">
+
+.center[Information from these regions [re-drew](http://dx.doi.org/10.1073/pnas.87.12.4576) the tree of life.]
 
 ---
 
 # 16S sequencing always targets the same regions of the gene
 
-- Use constant regions as "anchors" (i.e., primer binding sites)
+- Polymerase chain reaction (PCR) creates many copies of a sequence bounded by "anchors" (i.e., primer binding sites)
+- Use constant regions as "anchors"
 - Variable region is the "content" of the amplicon
-
-<img src="/img/pcr-construct.png" width="60%">
 
 ---
 
 # 16S sequences are grouped into operational taxonomic units (OTUs)
 
-- The definition of a bacterial species is highly-debated
+- Environments often have many 16S sequences that are similar to one another
 - Similarity of 16S genes is a decent, operational stand-in for species
-- Clustering sequences into OTUs simplifies data analysis"
+- Clustering sequences into OTUs simplifies data analysis
+- OTUs are often labeled by percentages: 97% OTUs are (roughly) clusters of 97% similar sequences
 
----
-
-*Practical bacterial phylogenetics using 16S*
+.center[But the definition of a bacterial species is [highly debated](http://dx.doi.org/10.1098/rstb.2006.1920)]
 
 ---
 
@@ -159,7 +244,7 @@ class: transition
 
 <img src="/img/seq-to-tree.png" width="60%">
 
-*But how do you interpret the leaves?*
+.center[But how do you interpret the leaves without "names"?]
 
 ---
 
@@ -167,92 +252,149 @@ class: transition
 
 <img src="/img/seq-to-tax.png" width="75%">
 
-*Easier to make hypotheses and relate to other studies*
+.center["Names" makes it easier to study a system and discuss results]
 
 ---
 
-# Taxonomy assignment is different from (but related to) operational taxonomic unit (OTU) assignment
+# Caveat: Taxonomy assignment is different from operational taxonomic unit (OTU) assignment
 
 - OTU-calling clusters unique sequences into biologically-relevant quasi-species
-  - Reference-based OTUs: put each sequence into the database OTU that it matches best
-  - *De novo* OTUs: put similar sequences into the same *ad hocs* OTUs
+- Reference-based OTUs: put each sequence into the database OTU that it matches best
+- *De novo* OTUs: put similar sequences into the same *ad hoc* OTUs
+
+.center[OTU calling is a [highly-debated](https://figshare.com/articles/2015_Poster_on_OTU_robustness_reproducibility_amp_ecological_consistency/1437744) topic]
+
+---
+
+# Taxonomy assignment can replace or follow OTU assignment
+
+- You can call OTUs by saying OTU 1 is all sequences that classify as *E. coli*, etc.
 - *De novo* OTUs are assigned taxonomies using a reference database
 
 ---
 
-# Taxonomy assignment, Method 1: Exhaustive alignment-based searches (BLAST) are slow but reliable
+class: transition
 
-*Compare all against all*
+# How do you assign taxonomies to 16S sequences?
+
+---
+
+# 2 minute activity
+
+*How can you assign a "name" to a 16S sequence?*
+
+- Work with one partner
+- Take 2 minutes to come up with the skeleton of 1 methodology/workflow
+- Assume you have unlimited (but plausible) resources
+- Hint: What are ways to compare a query sequence with a database of sequences?
+
+---
+
+# Method 1: Exhaustive alignment-based searches ([BLAST](http://blast.ncbi.nlm.nih.gov)) are slow but reliable
+
+Compare all your sequences against everything in the [GenBank](http://www.ncbi.nlm.nih.gov/genbank), EMBL, DDBJ, and PDB databases:
 
 <img src="/img/all-against-all.png" width="60%">
 
 ---
 
-**Pros:**
+# BLAST is reliable if your query is in the database
 
+**Pros:**
 - Alignments are a good way to match sequences
-- Hits are to a cultured organisms with establish species names
+- Some hits are to a cultured organism with established species names
 
 **Cons:**
-
 - Very slow
-- Poor characterization of uncultured organisms"))
+- Poor characterization of uncultured organisms (e.g., `Uncultured bacterium partial 16S rRNA gene, clone A17C11`)
 
 ---
 
-# Method 2: Alignment-based search with heuristics (USEARCH) are faster but weirder
+# Get around the "Uncultured bacterium" wall by designing a custom database
+
+- In 2006, about half of 16S sequences in GenBank were "environmental sample" or "unclassified"
+- [Curators built](http://dx.doi.org/10.1128/AEM.03006-05) trees from sequences and applied a consistent taxonomic scheme
+- The result is a database of reference OTUs (99%, 97%, etc.), trees, and taxonomies called [Greengenes](http://greengenes.lbl.gov/cgi-bin/nph-index.cgi)
+
+---
+
+# Heuristics improve a workflow's speed at the cost of accuracy
+
+- A *heuristic* is an easy-to-compute method (or value) that approximates something difficult-to-compute
+- E.g., computing sequence similarity by alignment is difficult, but determining if two sequences have the same number of `A`'s is easy
+- Heuristics give *a* solution, not necessarily the best one
+
+---
+
+# The popular heuristic search algorithm is [USEARCH](http://www.drive5.com/usearch/manual/usearch_algo.html): faster than BLAST, but weirder
 
 **Pros:**
-
 - 10-1,000x faster than BLAST
 
 **Cons:**
-
-- No guarantee that the hit you get is the best hit
-
----
-
-# Greengenes is the popular database to use with USEARCH
-
-The [database](http://greengenes.lbl.gov/cgi-bin/nph-index.cgi)
-
-swo> has non-isolated stuff... but how did it get assigned?
+- No guarantee that the hit you get is the database sequence most similar to the query
 
 ---
 
 # Interlude: What heuristics can mean for your data
 
-swo> amy's data
+- Similar sequences might not be mapped to the same database entry
+- Mappings might depend on parameters that don't seem relevant
+- A good match might not be found
 
 ---
 
-# USEARCH uses three strategies to improve speed
+# USEARCH uses three heuristics to improve speed
 
-1.  Do pairwise comparisons in order of decreasing sequence similarity heuristic
-2.  Make time-saving assumptions when performing the alignment
-3.  Stop after finding one hit that reaches acceptable minimum identity
+1. Do pairwise comparisons in order of decreasing sequence-similarity heuristic
+2. Make time-saving assumptions when performing the alignment
+3. Stop after finding one hit that reaches acceptable minimum identity (or after suffering many failures)
 
 ([Edgar](http://dx.doi.org/10.1093/bioinformatics/btq461), *Bioinformatics* 2010;
 USEARCH [documentation](http://www.drive5.com/usearch/manual/usearch_algo.html))
 
 ---
 
-# USEARCH's sequence similarity heuristic is based on *k*-mers"
+# USEARCH's sequence-similarity heuristic is based on *k*-mers
+
+- A sequence's *k*-mers are all subsequences of length *k*.
+- E.g., `AAACCCGGG` has 4-mers `AAAC`, `AACC`, `ACCC`, etc.
+- USEARCH guesses sequence-similarity using appearance of certain *k*-mers
 
 ---
 
-# Method 3: Use *k*-mer content to assign taxonomy (RDP)"
+# You can filter spam by recognizing discriminating email words
+
+- The words "mortgage", "Viagra", "singles" appear mostly in my spam
+- The words "data", "Greek", "dinner" appear most in real mail
+- Assume an email is a "bag of words" and classify it based on appearance of words
 
 ---
 
-# RDP uses a naive Bayesian classifier"
+# A naive Bayesian classifier of *k*-mers ([RDP](https://rdp.cme.msu.edu/classifier/classifier.jsp)) can assign taxonomy
+
+- Assume a sequence is a "bag of *k*-mers" and classify it
+- Technically, it's a [naive Bayesian classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+
+([Wang *et al.*](http://dx.doi.org/10.1128/AEM.00062-07), *Appl Environ Microbiol* 2007)
 
 ---
 
 # RDP's approach can feel more stable than alignment-based approaches
-             (item "revisit Amy's data"))
 
-(transition-slide "Nuts & bolts")
+**Pros:**
+- Assigns confidences to classification levels (rather than just hitting a sequence)
+- Fast
+- Stable (assigns similar sequences to similar things)
+
+**Cons:**
+- Can't discriminate below the genus level
+
+---
+
+class: transition
+
+# Nuts & bolts
 
 ---
 
@@ -262,31 +404,68 @@ They are usually in [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) format:
 
 ```
 @HWI-M04407:1:1101:15058:1935#TTGATATTAGAGAGAC/1
-TGTGGTGCCAGCCGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGATTTACTGGGTGTAAAG
+TGTGGTGCCAGCCGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGATTTACTGGGTGTAAAG ...
 +
-A1A11B11B11>A1AE0EA0EA/D2DAGFC/D1/B0B/E/EE/FGFE?/BEH12D@@/G/E122@
+A1A11B11B11>A1AE0EA0EA/D2DAGFC/D1/B0B/E/EE/FGFE?/BEH12D@@/G/E122@ ...
 @HWI-M04407:1:1101:15485:1946#TTGATATTAGAGAGAC/1
-CACGGTGCCAGCCGCCGCGGTAATACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAG
+CACGGTGCCAGCCGCCGCGGTAATACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAG ...
 +
-AAA1AA1>CF1>AAAEEEE0EA/FAF///A//B1FA//A/EE/GGG>/>EEH1FGEDEFGG1B1B
+AAA1AA1>CF1>AAAEEEE0EA/FAF///A//B1FA//A/EE/GGG>/>EEH1FGEDEFGG1B1B ...
+```
+
+---
+
+# What do the "databases" look like?
+
+Greengenes `97_otus.fasta` is a [FASTA](https://en.wikipedia.org/wiki/FASTA_format) file:
+
+```
+>1111883
+GCTGGCGGCGTGCCTAACACATGTAAGTCGAACGGGACTG
+TGAGCAACTTGTCCGACGGCGGGGGATAGCCGGCCCAACG
+... [1428 nucleotides]
+>1111882
+AGAGTTTGATCATGGCTCAGGATGAACGCTAGCGGCAGGC
+GAGACCGGCGCACGGGTGCGTAACGCGTATGCAATCTGCC
+TTATAGTATATAGATGTGGCATCACATTTCTATTAAAGAT
+... [1479 nucleotides]
+```
+
+---
+
+# What do "taxonomy lists" look like?
+
+Greengenes `97_otu_taxonomy.txt` is a plain text file:
+
+```
+367523  k__Bacteria; p__Bacteroidetes; c__Flavobacteriia; o__Flavobacteriales; f__Flavobacteriaceae; g__Flavobacterium; s__
+
+187144  k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__; g__; s__
+```
+
+RDP output is a "fixrank" file:
+
+```
+seq00001;  Bacteria  domain  1.0  "Bacteroidetes"  phylum  1.0  "Bacteroidia"  class  1.0  "Bacteroidales"  order  1.0  "Porphyromonadaceae"  family  1.0  Parabacteroides  genus  1.0
 ```
 
 ---
 
 # There are multiple steps between raw data and analysis-ready data
 
-1. Demultiplex reads 
+1. Demultiplex reads
 2. Trim non-biological primers from reads
 3. If using paired-end sequencing, merge reads
 4. Remove reads (or sections of reads) with low quality
-5. Identify and index unique reads
-6. Call OTUs
+5. Call OTUs
 
 (This is complex enough that I wrote a [short book](https://leanpub.com/primer16s/) on it!)
 
 ---
 
 # These choices can have subtle effects on conclusions
+
+<img src="/img/taxa-plot.png" width="100%">
 
 ---
 
@@ -305,11 +484,15 @@ class: transition
 
 # New technologies and methods will continue to change this landscape
 
+- Cheaper, easier, and more accurate sequencing
 - Single-cell sequencing: like metagenomic shotgun sequencing, but better
+- Improving databases and sequence homology detection
 
 ---
 
 # But there is no clear path around certain bottlenecks
 
 - How do you identify the function of unknown genes?
+- How do you identify the function of unknown bacteria?
+- How do you work with the 99% of the bacterial genome that is not easily comparable?
 - What do you do with taxonomies once you have them?

@@ -63,6 +63,10 @@ ul li {
     padding: 0.5em 0 0 0;
 }
 
+p + ul {
+    margin-top: -1em;
+}
+
 img {
     vertical-align: middle;
     max-height: 600px;
@@ -82,11 +86,13 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Lato", Arial, sans-serif;
     font-weight: 500;
     margin: 1em 0 0.5em;
+    padding-bottom: 1em; 
 }
 
 b,
 strong {
     font-weight: 500;
+    font-weight: bold;
 }
 
 blockquote {
