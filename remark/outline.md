@@ -398,6 +398,18 @@ class: transition
 
 ---
 
+# There are multiple steps between raw data and analysis-ready data
+
+1. Demultiplex reads
+2. Trim non-biological primers from reads
+3. If using paired-end sequencing, merge reads
+4. Remove reads (or sections of reads) with low quality
+5. Call OTUs
+
+(This is complex enough that I wrote a [short book](https://leanpub.com/primer16s/) on it!)
+
+---
+
 # What do the "raw" sequencing data actually look like?
 
 They are usually in [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) format:
@@ -451,19 +463,33 @@ seq00001;  Bacteria  domain  1.0  "Bacteroidetes"  phylum  1.0  "Bacteroidia"  c
 
 ---
 
-# There are multiple steps between raw data and analysis-ready data
+# What does a USEARCH command look like?
 
-1. Demultiplex reads
-2. Trim non-biological primers from reads
-3. If using paired-end sequencing, merge reads
-4. Remove reads (or sections of reads) with low quality
-5. Call OTUs
+```
+usearch -usearch_global query.fasta -db gg_13_5_otus/rep_set/97_otus.fasta -id 0.97 -blast6out results.b6 -strand plus
+```
 
-(This is complex enough that I wrote a [short book](https://leanpub.com/primer16s/) on it!)
+gives output like
+
+```
+seq00003  548699    97.6  253  6  0  1  253  1  1352  *  *
+seq00002  1136443  100.0  253  0  0  1  253  1  1471  *  *
+seq00004  324882    99.2  253  2  0  1  253  1  1410  *  *
+```
 
 ---
 
-# These choices can have subtle effects on conclusions
+# There are "industry-standard" pipelines that can simplify these intermediate steps...
+
+- The most popular, [QIIME](http://qiime.org/), relies on USEARCH
+- The other popular one, [mothur](http://www.mothur.org/), relies on a [clone](https://github.com/torognes/vsearch) of USEARCH
+
+([Caporaso *et al.*](http://dx.doi.org/10.1038/nmeth.f.303), *Nat Meth* 2010,
+[Schloss *et al.*](http://dx.doi.org/10.1128/AEM.01541-09), *Appl Environ Microbiol* 2009)
+
+---
+
+# ... but these intermediate processing steps can have subtle effects on conclusions
 
 <img src="/img/taxa-plot.png" width="100%">
 
