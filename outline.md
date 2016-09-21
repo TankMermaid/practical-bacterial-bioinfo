@@ -3,16 +3,6 @@ Scott Olesen
 
 ---
 
-# A brief note about me (in case you're interested in a scientific training)
-
-- 2006-2010: Williams, BA (physics)
-- 2010-2012: University of Cambridge, Masters (theoretical physics and computational chemistry)
-- 2012-2016: MIT, PhD ([microbiome science](http://almlab.mit.edu/))
-- 2016-20XX: Harvard School of Public Health, postdoc (antibiotic resistance)
-- Later: maybe analytical public policy, maybe more biology
-
----
-
 # My goals for today
 
 - Be interesting/entertaining/give microbiome science a good rap
@@ -20,6 +10,16 @@ Scott Olesen
 - Show you real tools that are used by scientists (like me) right now
 - Introduce the idea of *heuristics* in computation
 - Be a positive model for you if you're interested in following a path similar to mine
+
+---
+
+# A brief note about me (in case you're interested in a scientific training)
+
+- 2006-2010: Williams, BA (physics)
+- 2010-2012: University of Cambridge, Masters (theoretical physics and computational chemistry)
+- 2012-2016: MIT, PhD ([microbiome science](http://almlab.mit.edu/))
+- 2016-20XX: Harvard School of Public Health, postdoc (antibiotic resistance)
+- Later: maybe analytical public policy, maybe more biology
 
 ---
 
@@ -53,7 +53,7 @@ Scott Olesen
 
 - Each human has hundreds or thousands of bacterial species living on/in her
 - Bacterial cells are similar in number to human cells
-- Bacterial genes in/on the human body outnumber human genes by 100-1,000 fold
+- Bacterial genes on/in the human body outnumber human genes by 100-1,000 fold
 
 ---
 
@@ -119,10 +119,11 @@ colonization patterns" in colorectal cancer patients?*
 
 # Asking "who's there?" is key to many of these studies
 
-- We know a lot about cultured organisms, which we identify by "name"
+- We know a lot about cultured organisms, which we identify by "name" (i.e., *taxonomy*)
+- Those names roughly correlate with organisms' functions
 - You need names to talk about how things interact with one another
 
-.center[Unfortunately, many organisms don't have clear "names".]
+.center[Unfortunately, many organisms don't have clear names.]
 
 ---
 
@@ -236,7 +237,7 @@ class: transition
 - Clustering sequences into OTUs simplifies data analysis
 - OTUs are often labeled by percentages: 97% OTUs are (roughly) clusters of 97% similar sequences
 
-.center[But the definition of a bacterial species is [highly debated](http://dx.doi.org/10.1098/rstb.2006.1920)]
+.center[But the definition of a bacterial species is [highly debated](http://dx.doi.org/10.1098/rstb.2006.1920).]
 
 ---
 
@@ -252,7 +253,7 @@ class: transition
 
 <img src="/img/seq-to-tax.png" width="75%">
 
-.center["Names" makes it easier to study a system and discuss results]
+.center["Names" makes it easier to study a system and discuss results.]
 
 ---
 
@@ -262,7 +263,7 @@ class: transition
 - Reference-based OTUs: put each sequence into the database OTU that it matches best
 - *De novo* OTUs: put similar sequences into the same *ad hoc* OTUs
 
-.center[OTU calling is a [highly-debated](https://figshare.com/articles/2015_Poster_on_OTU_robustness_reproducibility_amp_ecological_consistency/1437744) topic]
+.center[OTU calling is a [highly-debated](https://figshare.com/articles/2015_Poster_on_OTU_robustness_reproducibility_amp_ecological_consistency/1437744) topic.]
 
 ---
 
@@ -357,7 +358,7 @@ USEARCH [documentation](http://www.drive5.com/usearch/manual/usearch_algo.html))
 
 # USEARCH's sequence-similarity heuristic is based on *k*-mers
 
-- A sequence's *k*-mers are all subsequences of length *k*.
+- A sequence's *k*-mers are all subsequences of length *k*
 - E.g., `AAACCCGGG` has 4-mers `AAAC`, `AACC`, `ACCC`, etc.
 - USEARCH guesses sequence-similarity using appearance of certain *k*-mers
 
@@ -481,8 +482,8 @@ seq00004  324882    99.2  253  2  0  1  253  1  1410  *  *
 
 # There are "industry-standard" pipelines that can simplify these intermediate steps...
 
-- The most popular, [QIIME](http://qiime.org/), relies on USEARCH
-- The other popular one, [mothur](http://www.mothur.org/), relies on a [clone](https://github.com/torognes/vsearch) of USEARCH
+- The most popular, [QIIME](http://qiime.org/), relies on the closed-source `usearch` (which implements USEARCH)
+- The other popular one, [mothur](http://www.mothur.org/), relies on a [clone](https://github.com/torognes/vsearch) of `usearch`
 
 ([Caporaso *et al.*](http://dx.doi.org/10.1038/nmeth.f.303), *Nat Meth* 2010,
 [Schloss *et al.*](http://dx.doi.org/10.1128/AEM.01541-09), *Appl Environ Microbiol* 2009)
@@ -503,8 +504,9 @@ class: transition
 
 # Amplicon sequencing can also answer questions in other organisms
 
+- Particular bacterial species or genera can be examined (e.g., those that cause cholera, tuberculosis, acne, etc.)
 - A DNA stretch near the ribosome is a fungal taxonomic barcode
-- Bacterial species or genera can be examined (e.g., those that cause cholera, tuberculosis, acne, etc.)
+- The eukaryotic ribosome is a good target for studying protists
 
 ---
 
